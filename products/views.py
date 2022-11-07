@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from products.models import Product
+from .models import SizeVariant
 
 # Create your views here.
 
@@ -13,8 +14,10 @@ def get_product(request, slug):
         price=product.get_product_price_by_size(size)
         context["selected_size"] = size
         context["updated_price"] = price
-        print(price)
 
         return render(request, "product/product.html", context=context)
     else:
         return render(request, "product/product.html", context=context)
+
+
+
